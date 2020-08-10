@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using onlineShop.WEB.Data.Interfaces;
+using onlineShop.WEB.Data.Mocks;
 
 namespace onlineShop.WEB
 {
@@ -23,6 +25,9 @@ namespace onlineShop.WEB
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IDrinkRepository, MockDrinkRepository>();
+            services.AddTransient<ICategoryRepository, MockCategoryRepository>();
+
             services.AddControllersWithViews();
         }
 

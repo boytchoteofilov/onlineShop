@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace onlineShop.WEB.Data
+namespace onlineShop.WEB.Data.Models
 {
     public class Category
     {

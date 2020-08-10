@@ -1,16 +1,16 @@
-﻿@using  onlineShop.WEB.Data.Models
-@model IEnumerable<Drink>
-@{
+﻿@{
     ViewData["Title"] = "All Drinks";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@Model.CurrentCategory</h1>
+   
 </div>
 
-@foreach (var item in Model)
+
+
+@foreach (var item in Model.Drinks)
 {
-    <h1>Drink name: @item.Name</h1>
-    <h2>Price: @item.Price</h2>
+    <h2>Drink name: @item.Name</h2>
+    <h3>Price: @item.Price</h3>
 }

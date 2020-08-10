@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using onlineShop.WEB.Data.Interfaces;
+using onlineShop.WEB.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,13 @@ namespace onlineShop.WEB.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        public ViewResult List()
+        public IActionResult List()
         {
-            var drinks = drinkRepository.Drinks;
-            return View(drinks);
+            var vm =  new DrinkListViewModel();
+            vm.Drinks = drinkRepository.Drinks;
+            vm.CurrentCategory = "Alcoholic";
+
+            return View(vm);
         }
     }
 }

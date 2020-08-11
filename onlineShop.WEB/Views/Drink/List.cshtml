@@ -2,15 +2,27 @@
     ViewData["Title"] = "All Drinks";
 }
 
-<div class="text-center">
-    <h1 class="display-4">@Model.CurrentCategory</h1>
-   
-</div>
+
 
 
 
 @foreach (var item in Model.Drinks)
-{
-    <h2>Drink name: @item.Name</h2>
-    <h3>Price: @item.Price</h3>
+{ 
+
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@item.ImageThumbnailUrl" />
+            <div class="caption">
+                <h3 class="pull-right">@item.Price.ToString("c")</h3>
+                <h3>
+                    <a>@item.Name</a>
+                </h3>
+                <p>@item.ShortDescription</p>
+            </div>
+        </div>
+    </div>
+
+   
 }
+
+

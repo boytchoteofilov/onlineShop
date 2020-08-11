@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using onlineShop.WEB.Data;
 using onlineShop.WEB.Data.Interfaces;
 using onlineShop.WEB.Data.Mocks;
+using onlineShop.WEB.Data.Models;
 using onlineShop.WEB.Data.Repositories;
 
 namespace onlineShop.WEB
@@ -30,18 +31,29 @@ namespace onlineShop.WEB
         {
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddTransient<IDrinkRepository, DrinkRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-
+            services.AddTransient<AppDbContext>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+                dbContext.Database.Migrate();
+                DbInitializer.Seed(dbContext);
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -56,12 +68,13 @@ namespace onlineShop.WEB
 
             app.UseAuthorization();
 
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            });           
         }
     }
 }

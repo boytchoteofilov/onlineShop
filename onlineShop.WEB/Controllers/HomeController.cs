@@ -7,27 +7,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using onlineShop.WEB.Views;
+using onlineShop.WEB.Data.Interfaces;
 
 namespace onlineShop.WEB.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IDrinkRepository drinkRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IDrinkRepository drinkRepository)
         {
             _logger = logger;
+            this.drinkRepository = drinkRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
+            var vm = new HomeViewModel
+            {
+                PreferredDrinks = drinkRepository.PreferredDrinks
+            };
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(vm);
         }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

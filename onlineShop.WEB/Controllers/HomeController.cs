@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using onlineShop.WEB.Views.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using onlineShop.WEB.Models;
+using onlineShop.WEB.Views;
 
 namespace onlineShop.WEB.Controllers
 {

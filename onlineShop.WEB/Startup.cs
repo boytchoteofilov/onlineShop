@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,13 @@ namespace onlineShop.WEB
 
             services.AddTransient<IDrinkRepository, DrinkRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddMemoryCache();
+            services.AddSession();
+            services.AddMvc();
+
             services.AddTransient<AppDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -68,6 +76,7 @@ namespace onlineShop.WEB
 
             app.UseAuthorization();
 
+            app.UseSession();
             
             app.UseEndpoints(endpoints =>
             {

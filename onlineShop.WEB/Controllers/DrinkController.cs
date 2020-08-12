@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using onlineShop.WEB.Data.Interfaces;
-using onlineShop.WEB.Views;
+using onlineShop.WEB.Views.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using onlineShop.WEB.Data.Models;
 
-namespace onlineShop.WEB.Views
+namespace onlineShop.WEB.Views.ViewModels
 {
     public class DrinkListViewModel
     {

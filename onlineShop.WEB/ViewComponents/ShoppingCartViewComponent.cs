@@ -20,7 +20,7 @@ namespace onlineShop.WEB.Components
 
         public IViewComponentResult  Invoke()
         {
-            var items = shoppingCart.GetShoppingCartItems(); // new List<ShoppingCartItem>(){new ShoppingCartItem(), new ShoppingCartItem()};
+            var items = shoppingCart.GetShoppingCartItems();
             shoppingCart.ShoppingCartItems = items;
 
             var vm = new ShoppingCartViewModel

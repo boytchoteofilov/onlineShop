@@ -25,8 +25,7 @@
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         @*@await Component.InvokeAsync("CategoryMenu")*@
                         <li><a asp-controller="About" asp-action="Index">About</a></li>
-                        @await Component.InvokeAsync("ShoppingCart")
-                        <vc:shopping-cart></vc:shopping-cart>
+                        @await Component.InvokeAsync("ShoppingCart")                       
                     </ul>
                    
                     <form class="navbar-form navbar-right" asp-controller="Drink" asp-action="Search" method="get">

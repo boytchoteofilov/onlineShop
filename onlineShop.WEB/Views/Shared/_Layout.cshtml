@@ -8,49 +8,39 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">Drink&Go</a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        @*@await Component.InvokeAsync("CategoryMenu")*@
-                        <li><a asp-controller="About" asp-action="Index">About</a></li>
-                        @await Component.InvokeAsync("ShoppingCart")                       
-                    </ul>
-                   
-                    <form class="navbar-form navbar-right" asp-controller="Drink" asp-action="Search" method="get">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            &copy; 2020 - onlineShop.WEB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>                
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    @await Component.InvokeAsync("DinamicMenu")
+                    <li><a asp-controller="Contact" asp-action="Index">Contact us</a></li>
+                    @await Component.InvokeAsync("ShoppingCart")
+                </ul>
+               @* @await Html.PartialAsync("LoginPartial")*@
+                <form class="navbar-form navbar-right" asp-controller="Drink" asp-action="Search" method="get">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
+                    </div>
+                </form>
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    </nav>
+    <div class="container body-content" style="padding:50px;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p><a target="_blank" href="https://github.com/etrupja">&copy; 2017 - Ervis Trupja</a></p>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

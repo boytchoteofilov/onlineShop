@@ -34,13 +34,13 @@ a.remove {
     width: 80% /* value of your choice which suits your alignment */
 }
 
-.marginTop {
+/*.marginTop {
     margin-top: 5%;
 }
 
 .marginTop1 {
     margin-top: 2%;
-}
+}*/
 
 .formPullRightButton {
     margin-right: 10px !important
@@ -52,4 +52,8 @@ a.remove {
 
 .thumbnail img {
     height: 150px;
+}
+
+.body-content {
+   padding:100px ;
 }

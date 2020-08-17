@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace onlineShop.WEB.Components
+namespace onlineShop.WEB.ViewComponents
 {
     [ViewComponent(Name = "ShoppingCart")]
     public class ShoppingCartViewComponent : ViewComponent
@@ -20,7 +20,7 @@ namespace onlineShop.WEB.Components
 
         public IViewComponentResult  Invoke()
         {
-            var items = shoppingCart.GetShoppingCartItems();
+            var items = shoppingCart.GetShoppingCartItems(); //new List<ShoppingCartItem> { new ShoppingCartItem(), new ShoppingCartItem() };
             shoppingCart.ShoppingCartItems = items;
 
             var vm = new ShoppingCartViewModel

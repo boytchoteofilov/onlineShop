@@ -15,6 +15,7 @@ using onlineShop.WEB.Data.Interfaces;
 using onlineShop.WEB.Data.Mocks;
 using onlineShop.WEB.Data.Models;
 using onlineShop.WEB.Data.Repositories;
+using Westwind.AspNetCore.LiveReload;
 
 namespace onlineShop.WEB
 {
@@ -46,6 +47,8 @@ namespace onlineShop.WEB
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.AddLiveReload();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +64,9 @@ namespace onlineShop.WEB
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+                app.UseLiveReload();
+
+
             }
             else
             {
@@ -80,6 +85,10 @@ namespace onlineShop.WEB
             
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "categoryfilter",
+                    pattern: "{controller=Drink}/{action=List.}/{category?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

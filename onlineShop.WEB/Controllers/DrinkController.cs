@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using onlineShop.WEB.Data.Interfaces;
+using onlineShop.WEB.Data.Models;
 using onlineShop.WEB.Views.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,32 @@ namespace onlineShop.WEB.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        public IActionResult List()
+        public IActionResult List(string category)
         {
-            var vm =  new DrinkListViewModel();
-            vm.Drinks = drinkRepository.Drinks;
-            vm.CurrentCategory = "Alcoholic";
+            string _category = category;
+            IEnumerable<Drink> drinks;
+            string currentCategory = string.Empty;
 
-            return View(vm);
+            if (string.IsNullOrEmpty(category))
+            {
+                drinks = drinkRepository.Drinks.OrderBy(p => p.DrinkId);
+                currentCategory = "All drinks";
+            }
+            else
+            {
+                if (string.Equals("Alcoholic", _category, StringComparison.OrdinalIgnoreCase))
+                    drinks = drinkRepository.Drinks.Where(p => p.Category.CategoryName.Equals("Alcoholic")).OrderBy(p => p.Name);
+                else
+                    drinks = drinkRepository.Drinks.Where(p => p.Category.CategoryName.Equals("Non-alcoholic")).OrderBy(p => p.Name);
+
+                currentCategory = _category;
+            }
+
+            return View(new DrinkListViewModel
+            {
+                Drinks = drinks,
+                CurrentCategory = currentCategory
+            });
         }
     }
 }

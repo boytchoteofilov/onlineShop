@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace onlineShop.WEB.Data.Models
 {
     public class ShoppingCartItem
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    { 
         public int ShoppingCartItemId { get; set; }
 
         public Drink Drink { get; set; }

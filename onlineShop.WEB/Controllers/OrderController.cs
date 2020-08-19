@@ -23,5 +23,31 @@ namespace onlineShop.WEB.Controllers
             return View();
         }
 
+        [HttpPost]        
+        public IActionResult Checkout(Order order)
+        {
+            var items = shoppingCart.GetShoppingCartItems();
+            shoppingCart.ShoppingCartItems = items;
+            if (shoppingCart.ShoppingCartItems.Count == 0)
+            {
+                ModelState.AddModelError("", "Your card is empty, add some drinks first");
+            }
+
+            if (ModelState.IsValid || !ModelState.IsValid)
+            {
+                orderRepository.CreateOrder(order);
+                shoppingCart.ClearCart();
+                return RedirectToAction("CheckoutComplete");
+            }
+
+            return View(order);
+        }
+
+        public IActionResult CheckoutComplete()
+        {
+            ViewBag.CheckoutCompleteMessage = "Thanks for your order! :) ";
+            return View();
+        }
+
     }
 }

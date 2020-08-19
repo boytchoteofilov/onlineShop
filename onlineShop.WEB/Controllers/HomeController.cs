@@ -12,13 +12,11 @@ using onlineShop.WEB.Data.Interfaces;
 namespace onlineShop.WEB.Controllers
 {
     public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
+    {        
         private readonly IDrinkRepository drinkRepository;
 
-        public HomeController(ILogger<HomeController> logger, IDrinkRepository drinkRepository)
-        {
-            _logger = logger;
+        public HomeController(IDrinkRepository drinkRepository)
+        {            
             this.drinkRepository = drinkRepository;
         }
 

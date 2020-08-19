@@ -25,6 +25,9 @@ namespace onlineShop.WEB.Data.Repositories
             order.OrderPlaced = DateTime.Now;
             dbContext.Orders.Add(order);
 
+            // without this line FK error from database ocurred
+            dbContext.SaveChanges();
+
             var shoppingCartItems = shoppingCart.ShoppingCartItems;
 
             foreach (var item in shoppingCartItems)
@@ -32,13 +35,14 @@ namespace onlineShop.WEB.Data.Repositories
                 var orderDetail = new OrderDetail()
                 {
                     Amount = item.Amount,
-                    DrinkId = item.Drink.DrinkId,
                     OrderId = order.OrderId,
-                    Price = item.Drink.Price,
+                    DrinkId = item.Drink.DrinkId,
+                    Price = item.Drink.Price
                 };
 
                 dbContext.OrderDetails.Add(orderDetail);
             }
+
             dbContext.SaveChanges();
         }
     }

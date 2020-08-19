@@ -31,26 +31,26 @@ namespace onlineShop.WEB.Controllers
                 ShoppingCartTotal = this.shoppingCart.GetShoppingCartTotal()
             };
 
-            return View(vm); 
+            return View(vm);
         }
 
         public RedirectToActionResult AddToShoppingCart(int drinkId)
         {
             var selectedDrink = drinkRepository.Drinks.FirstOrDefault(x => x.DrinkId == drinkId);
 
-            if (selectedDrink!=null)
+            if (selectedDrink != null)
             {
                 shoppingCart.AddToCart(selectedDrink, 1);
             }
 
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
         public RedirectToActionResult RemoveFromShoppingCart(int drinkId)
         {
             var selectedDrink = drinkRepository.Drinks.FirstOrDefault(x => x.DrinkId == drinkId);
 
-            if (selectedDrink!=null)
+            if (selectedDrink != null)
             {
                 shoppingCart.RemoveFromCart(selectedDrink);
             }

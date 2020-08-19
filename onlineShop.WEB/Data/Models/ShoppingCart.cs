@@ -32,9 +32,10 @@ namespace onlineShop.WEB.Data.Models
 
         public void AddToCart(Drink drink, int amount)
         {
-            var shoppingCartItem =
-                    dbContext.ShoppingCartItems.SingleOrDefault(
-                        s => s.Drink.DrinkId == drink.DrinkId && s.ShoppingCartId == ShoppingCartId);
+            ShoppingCartItem shoppingCartItem =
+
+            dbContext.ShoppingCartItems.SingleOrDefault(
+                         s => s.Drink.DrinkId == drink.DrinkId && s.ShoppingCartId == ShoppingCartId);
 
             if (shoppingCartItem == null)
             {
@@ -42,16 +43,16 @@ namespace onlineShop.WEB.Data.Models
                 {
                     ShoppingCartId = ShoppingCartId,
                     Drink = drink,
-                    Amount = 1
+                    Amount = amount
                 };
 
-                dbContext.ShoppingCartItems.Add(shoppingCartItem);
+             dbContext.ShoppingCartItems.Add(shoppingCartItem);
             }
             else
             {
                 shoppingCartItem.Amount++;
             }
-            dbContext.SaveChanges();
+           dbContext.SaveChanges();
         }
 
         public int RemoveFromCart(Drink drink)

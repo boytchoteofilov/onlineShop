@@ -36,18 +36,24 @@ namespace onlineShop.WEB
 
             services.AddTransient<IDrinkRepository, DrinkRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+           
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
+
+            services.AddTransient<IOrderRepository, OrderRepository>();
+
             services.AddMemoryCache();
             services.AddSession();
             services.AddMvc();
 
-            services.AddTransient<AppDbContext>();
+            // Causes identity issue exception if not commented. 
+            // services.AddTransient<AppDbContext>();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddLiveReload();
+            // services.AddLiveReload();
 
         }
 
@@ -56,15 +62,15 @@ namespace onlineShop.WEB
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                var dbContext = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dbContext.Database.Migrate();
-                DbInitializer.Seed(dbContext);
+                //var dbContext = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+                //dbContext.Database.Migrate();
+                //DbInitializer.Seed(dbContext);
             }
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseLiveReload();
+                //app.UseLiveReload();
 
 
             }
@@ -86,8 +92,12 @@ namespace onlineShop.WEB
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "drinkdetails",
+                    pattern: "{controller=Drink}/{action=Details}/{drinkId?}");
+
+                endpoints.MapControllerRoute(
                     name: "categoryfilter",
-                    pattern: "{controller=Drink}/{action=List.}/{category?}");
+                    pattern: "{controller=Drink}/{action=List}/{category?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

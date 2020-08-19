@@ -7,8 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace onlineShop.WEB.ViewComponents
-{
-    [ViewComponent(Name = "ShoppingCart")]
+{    
     public class ShoppingCartViewComponent : ViewComponent
     {
         private readonly ShoppingCart shoppingCart;

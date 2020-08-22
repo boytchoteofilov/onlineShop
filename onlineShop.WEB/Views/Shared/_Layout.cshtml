@@ -3,44 +3,37 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - onlineShop.WEB</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>                
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    @await Component.InvokeAsync("DinamicMenu")
-                    <li><a asp-controller="Contact" asp-action="Index">Contact us</a></li>
-                    @await Component.InvokeAsync("ShoppingCart")
-                </ul>
-               @* @await Html.PartialAsync("LoginPartial")*@
-                <form class="navbar-form navbar-right" asp-controller="Drink" asp-action="Search" method="get">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content" style="padding:50px;">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p><a target="_blank" href="https://github.com/etrupja">&copy; 2017 - Ervis Trupja</a></p>
-        </footer>
+    <div class="home-inner">
+
     </div>
+
+    @await Component.InvokeAsync("DinamicMenu")
+
+    @await Component.InvokeAsync("ShoppingCart")
+
+    <div class="container body-content " style="padding:50px;">
+        @RenderBody()
+
+        <hr />
+
+        <footer>
+            <hr />
+           <a target="_blank" href="https://">&copy; 2020 - Boya</a>
+        </footer>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

@@ -1,19 +1,37 @@
 ﻿@model DinamicMenuViewModel
+    <!-- Navigation (Start)-->
+<nav class="navbar navbar-expand-md fixed-top">
+    <a class="navbar-brand" href="#"><img src="~/Images/logo.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"> </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drinks</a>
 
-<li class="dropdown">
-    <a asp-controller="Drink"
-       asp-action="List"
-       class="dropdown-toggle" data-toggle="dropdown">Drinks<b class="caret"></b></a>
+                <div class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <a class="nav-link" asp-controller="Drink" asp-action="List" asp-route-category="@category.CategoryName">@category.CategoryName</a>
+                    }
 
-    <ul class="dropdown">
-        @foreach (var category in Model.Categories)
-        {
+                    <div class="dropdown-divider"></div>
 
-            <li><a asp-controller="Drink" asp-action="List" asp-route-category="@category.CategoryName">@category.CategoryName </a></li>
-        }
-            <li class="divider"></li>
-            <li><a asp-controller="Drink" asp-action="List" asp-route-category=""></a>List all categories</li>
-        
-    </ul>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
 
-</li>
+        </ul>
+        <form class="navbar-form navbar-right" asp-controller="Drink" asp-action="Search" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]">
+            </div>
+        </form>
+    </div>
+</nav>
+<!-- Navigation (End)-->

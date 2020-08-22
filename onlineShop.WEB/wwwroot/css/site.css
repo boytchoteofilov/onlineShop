@@ -2,10 +2,6 @@
     margin-right: 8px;
 }
 
-nav {
-    padding: 8px;
-}
-
 .loginForm {
     margin: 10%;
 }
@@ -34,13 +30,13 @@ a.remove {
     width: 80% /* value of your choice which suits your alignment */
 }
 
-/*.marginTop {
+.marginTop {
     margin-top: 5%;
 }
 
 .marginTop1 {
     margin-top: 2%;
-}*/
+}
 
 .formPullRightButton {
     margin-right: 10px !important
@@ -57,3 +53,218 @@ a.remove {
 .body-content {
    padding:100px ;
 }
+
+
+@import url('https://fonts.googleapis.com/css?family=lato:400,700');
+
+body {
+    overflow-x: hidden;
+    font-family: 'Lato' sans-serif;
+    color: #505962;
+}
+
+/* in order to display the section below the fixed navigation when navigating from menu*/
+.offset:before {
+    display: block;
+    content: "";
+    height: 4rem;
+}
+
+div {
+    border: 4px;
+}
+
+/* Navigation (Start)*/
+.navbar {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+    background-color: #ADECDA !important;
+}
+
+.nav-item {
+    padding-right: 1rem;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    padding-top: 0.8rem;
+}
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: #11bba3;
+    }
+
+/* Navigation (End)*/
+
+/* Landing page (Start)*/
+.home-inner {
+    background-image: url(../Images/sun-piercing-of-brown-concrete-house-near-sea-1732414.jpg);
+}
+
+.caption {
+    width: 100%;
+    max-width: 100%;
+    top: 20%;
+    font-size: 1rem;
+}
+/* Landing page (End)*/
+
+
+
+/* Course section (Start)*/
+
+img.card-img-top {
+    height: 300px;
+}
+
+.narrow {
+    width: 75%;
+    margin: 1.5rem auto;
+    padding-top: 2rem;
+}
+
+    .narrow h1 {
+        font-size: 2.4rem;
+    }
+
+.btn-secondary {
+    border-width: medium;
+    border-radius: 0;
+    padding: .6rem 1.2rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 1rem;
+    border-color: #1ebba3;
+    background-color: #1ebba3;
+    color: white;
+}
+
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+        border-color: #189582;
+        background-color: #189582;
+        color: white;
+    }
+/* Course section (End)*/
+
+/* Features section (Start) */
+.jumbotron {
+    margin-bottom: 0;
+    padding: 2rem 0 3.5rem;
+}
+
+h3.heading {
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1.9rem;
+}
+
+.heading-underline {
+    width: 3rem;
+    height: .2rem;
+    background-color: #1ebba3;
+    margin: 0 auto 2rem;
+}
+
+.feature svg.svg-inline--fa {
+    color: #1ebba3;
+}
+
+.feature h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    padding-bottom: 0.4rem;
+}
+
+.feature p {
+    font-size: 1.1rem;
+}
+/*Feature section (End)*/
+
+/*Resources section (Start)*/
+.fixed {
+    background-image: url(img/sun-piercing-of-brown-concrete-house-near-sea-1732414.jpg);
+    z-index: -1;
+}
+
+/*Resources section (End)*/
+
+/*Clients section (Start)*/
+.clients img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.clients blockquote .svg-inline--fa {
+    color: #11bba3;
+    margin: 0.5rem;
+}
+
+.clients hr {
+    border-top: 0.1rem solid #11bba3;
+}
+/*Clients section (End)*/
+
+/* Contacts section (Start) */
+footer {
+    color: white;
+    background-color: white;
+    text-align:center;
+}
+
+    footer img {
+        height: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    footer svg.svg-inline--fa {
+        font-size: 1.5rem;
+        margin: 1rem;
+    }
+
+        footer svg.svg-inline--fa:hover {
+            font-size: 1.5rem;
+            margin: 1rem;
+            color: #11bba3;
+        }
+
+    footer hr {
+        width: 100%;
+    }
+/* Contacts section (End) */
+
+@media (max-width: 767px) {
+    .caption {
+        font-size: 2rem;
+        letter-spacing: .15rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .clients img {
+        max-width: 10rem;
+    }
+}
+
+/*============ BOOTSTRAP BREAK POINTS:
+
+Extra small (xs) devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap
+
+Small (sm) devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+Medium (md) devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+=============*/
+

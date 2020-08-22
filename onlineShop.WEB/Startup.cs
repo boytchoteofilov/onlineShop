@@ -29,18 +29,22 @@ namespace onlineShop.WEB
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {     
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });            
+
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IDrinkRepository, DrinkRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-           
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
-            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
             services.AddMemoryCache();
             services.AddSession();
@@ -48,7 +52,7 @@ namespace onlineShop.WEB
 
             // Causes identity issue exception if not commented. 
             // services.AddTransient<AppDbContext>();
-            
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -59,7 +63,7 @@ namespace onlineShop.WEB
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
-               
+
                 DbInitializer.Seed(dbContext);
             }
 
@@ -69,33 +73,22 @@ namespace onlineShop.WEB
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Home/Error");               
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseSession();
-            
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "drinkdetails",
-                    pattern: "{controller=Drink}/{action=Details}/{drinkId?}");
+                endpoints.MapControllerRoute(name: "drinkdetails", pattern: "Drink/Details/{drinkId?}");
 
-                endpoints.MapControllerRoute(
-                    name: "categoryfilter",
-                    pattern: "{controller=Drink}/{action=List}/{category?}");
+                endpoints.MapControllerRoute(name: "categoryfilter", pattern: "Drink/List/{category?}");
 
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });           
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");                
+            });
         }
     }
 }
